@@ -1,0 +1,23 @@
+# dsh-github bundle: registers the host GitHub tools (45 github_* tools),
+# the dangerous-operation approval gate, and the system-prompt guidance.
+# Applied after @deepseek-ai/dsh-base, which already mounts the tool registry,
+# the credentials seam (ctx.credentials → $DSH_HOME/.credentials.yaml) and the
+# approval seam.
+#
+# Auth setup (pick one, both persist across restarts):
+#   1. PAT:      set GITHUB_TOKEN (env) or store it via the DSH settings page
+#                (credentials.set → $DSH_HOME/.credentials.yaml).
+#   2. OAuth:    set oauthClientId (+ oauthClientSecret or the
+#                GITHUB_OAUTH_CLIENT_SECRET credential) below, then in a chat
+#                session call github_auth_login once.
+- insert:
+    - id: github
+      name: dsh-github
+      config:
+        tokenRef: GITHUB_TOKEN
+        approvalGate: true
+        timeoutMs: 30000
+        # oauthClientId: your-github-oauth-app-client-id
+        # oauthClientSecret: only-if-you-must-inline-it
+        # oauthClientSecretRef: GITHUB_OAUTH_CLIENT_SECRET
+        # oauthScope: repo,read:org,user
