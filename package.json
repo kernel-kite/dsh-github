@@ -1,6 +1,6 @@
 {
   "name": "dsh-github",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GitHub 集成插件 for DeepSeek Harness：一次认证（GITHUB_TOKEN 或 OAuth Device Flow）后模型可直接调用 GitHub REST API 完成建仓、推送、提 PR、管 issue、搜索等 45 个工具；常规读写直接放行，删除/force push/合并 PR/关 issue 等危险操作保留审批门；token 存于 DSH credentials 服务，不落日志。 / GitHub integration plugin for DeepSeek Harness: authenticate once (PAT or OAuth device flow), then the model drives 45 github_* tools over the GitHub REST API. Routine reads/writes pass through; destructive operations (delete, force push, merge PR, close issue) keep an approval gate. Tokens live in the DSH credentials service and never appear in logs.",
   "type": "module",
   "main": "index.js",
@@ -28,7 +28,7 @@
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "*",
-    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/dsh-tools": ">=0.1.0-rc.1 <0.1.1 || >=0.1.1-rc.1 <0.2.0-0",
     "@deepseek-ai/schemastery": "*"
   },
   "scripts": {

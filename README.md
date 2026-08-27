@@ -4,11 +4,13 @@
 `github_*` 工具完成建仓、推送、提 PR、管 issue、搜索代码等 GitHub 事务，**不再每次操作
 都要求临时授权**。
 
-- 零依赖（只用 Node 22+ 内置 `fetch`），45 个工具，全部走 GitHub REST API v3
+- 零依赖（只用 Node 22+ 内置模块），45 个工具，全部走 GitHub REST API v3
 - 认证持久化：`GITHUB_TOKEN`（环境变量 / DSH credentials 服务）或 OAuth Device Flow
   （浏览器授权一次，token 自动写入 `$DSH_HOME/.credentials.yaml`，重启 DSH 依然有效）
 - 审批策略：读操作 + 常规写操作直接放行；删除仓库/文件/分支、force push、合并 PR、
   关闭 issue/PR 保留审批门
+- DNS 韧性：系统解析（hosts）把 github 域名指向 127.0.0.1（屏蔽/坏条目）时自动改用
+  DNS 直查绕过，`github_*` 工具不因 hosts 文件被改坏而失效
 - 安全：token 只进 `Authorization` 请求头，绝不落日志；错误信息与工具输出做防御性脱敏
 
 ## 快速开始
